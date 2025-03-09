@@ -1,0 +1,111 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0.0",
+        "description": "API documentation for Github API backend-test app.",
+        "title": "Github API",
+        "contact": {
+            "name": "Sachin Bhawar",
+            "email": "sachinbhavar@gmail.com",
+            "url": "https://www.linkedin.com/in/sachin-bhawar/"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3600/"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "JWT": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "Authorization",
+                "description": "JWT token to be included in the 'Authorization' header in the format 'Bearer token'."
+            }
+        }
+    },
+    "paths": {
+        "/github": {
+            "get": {
+                "tags": ["Github User"],
+                "summary": "Get user Details.",
+                "description": "Showing github user data, like number of followers, number of following, list of your personal repositories, etc",
+                "responses": {
+                    "200": { "description": "Details of github user fetched successfully" },
+                    "500": { "description": "Something went wrong" }
+                }
+            }
+        },
+
+        "/github/{repoName}": {
+            "get": {
+                "tags": ["Github Repository"],
+                "summary": "Shows data about that particular project..",
+                "description": "Allows users to sign in and receive a token to authenticate subsequent requests.",
+                "parameters": [
+                    {
+                        "name": "repoName",
+                        "in": "path",
+                        "description": "Name of the Repository.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": { "description": "Details of repository '${repoName}' fetched successfully" },
+
+                    "500": { "description": "Something went wrong" }
+                }
+            }
+        },
+
+        "/github/{repoName}/issues": {
+            "post": {
+                "tags": ["GitHub Repository Issues"],
+                "summary": "Creates an issue in the repo, and return the GitHub issue URL",
+                "description": "Creates an issue in the repo, and return the GitHub issue URL",
+                "security": [
+                    {
+                        "JWT": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "repoName",
+                        "in": "path",
+                        "description": "Name of the Repository.",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "body": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": { "description": "Issue created successfully." },
+
+                    "500": { "description": "Something went wrong" }
+                }
+            }
+        }
+    }
+}

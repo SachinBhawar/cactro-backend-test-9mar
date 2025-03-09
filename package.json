@@ -1,0 +1,23 @@
+{
+    "name": "backend-test",
+    "version": "1.0.0",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Sachin Bhawar (sachinbhavar@gmail.com)",
+    "license": "ISC",
+    "description": "",
+    "dependencies": {
+        "@octokit/rest": "^21.1.1",
+        "axios": "^1.8.2",
+        "cookie-parser": "^1.4.7",
+        "dotenv": "^16.4.7",
+        "express": "^4.21.2",
+        "swagger-ui-express": "^5.0.1"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.9"
+    }
+}
