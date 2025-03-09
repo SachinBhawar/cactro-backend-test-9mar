@@ -30,7 +30,7 @@ app.use(errorHandlerMiddleware);
 app.all("*", (req, res) => {
     res.status(404).send({
         success: false,
-        msg: "This route is not Supported by this app. For referece please check documentation at /api-docs",
+        msg: "This route is not Supported by this app.",
     });
 });
 
